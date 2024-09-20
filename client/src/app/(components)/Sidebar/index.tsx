@@ -31,7 +31,7 @@ const Sidebar = () => {
   // const isSidebarCollapsed = false;
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
-    (state) => state.global.isSidebarCollapsed,
+    (state: { global: { isSidebarCollapsed: any; }; }) => state.global.isSidebarCollapsed,
   );
 
   const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl
@@ -67,9 +67,9 @@ const Sidebar = () => {
             <h3 className="text-md font-bold tracking-wide dark:text-gray-200">
               YEABSIRA TEAM
             </h3>
-            <div className="mt-1 flex items-start gap-2">
+            <div className="mt-1 flex items-center gap-2">
               <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />
-              <p className="teshyywhsznm xt-xs text-gray-500">Private</p>
+              <p className="text-xs text-gray-500">Private</p>
             </div>
           </div>
         </div>
