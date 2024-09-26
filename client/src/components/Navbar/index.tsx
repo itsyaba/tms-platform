@@ -1,8 +1,9 @@
 import React from "react";
-import { Menu, Moon, Search, SearchCheck, Settings, Sun } from "lucide-react";
+import { Menu, Moon, Search, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
+import Image from "next/image";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -10,8 +11,23 @@ const Navbar = () => {
     (state) => state.global.isSidebarCollapsed,
   );
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const handleSignOut = async () => {
+    try {
+      alert("Signing out");
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
+  const currentUserDetails = {
+     username: "demo",
+     profilePictureUrl: "i1.jpg",
+  };
+
   return (
-    <div className="flex items-center justify-between px-4 py-3 dark:bg-black ">
+    <div className="flex items-center justify-between bg-white px-4 py-3 dark:bg-black">
+      {/* Search Bar */}
       <div className="flex items-center gap-8">
         {!isSidebarCollapsed ? null : (
           <button
@@ -29,7 +45,8 @@ const Navbar = () => {
           />
         </div>
       </div>
-      {/* ICONS */}
+
+      {/* Icons */}
       <div className="flex items-center">
         <button
           onClick={() => dispatch(setIsDarkMode(!isDarkMode))}
@@ -57,7 +74,27 @@ const Navbar = () => {
         </Link>
         <div className="ml-2 mr-5 hidden min-h-[2em] w-[0.1rem] bg-gray-200 md:inline-block"></div>
         <div className="hidden items-center justify-between md:flex">
-          <div className="align-center flex h-9 w-9 justify-center"></div>
+          <div className="align-center flex h-9 w-9 justify-center">
+            {!!currentUserDetails?.profilePictureUrl ? (
+              <Image
+                src={`/${currentUserDetails?.profilePictureUrl}`}
+                alt={currentUserDetails?.username || "User Profile Picture"}
+                width={100}
+                height={50}
+                className="h-full rounded-full object-cover"
+              />
+            ) : (
+              <User className="h-6 w-6 cursor-pointer self-center rounded-full dark:text-white" />
+            )}
+          </div>
+          <span className="mx-3 text-gray-800 dark:text-white">
+            {currentUserDetails?.username}
+          </span>
+          <button
+            className="hidden rounded bg-blue-400 px-4 py-2 text-xs font-bold text-white hover:bg-blue-500 md:block"
+          >
+            Sign out
+          </button>
         </div>
       </div>
     </div>
