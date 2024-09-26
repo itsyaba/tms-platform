@@ -12,14 +12,6 @@ const Navbar = () => {
   );
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
-  const handleSignOut = async () => {
-    try {
-      alert("Signing out");
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
-  };
-
   const currentUserDetails = {
      username: "demo",
      profilePictureUrl: "i1.jpg",
