@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install && npm install typescript && npx tsc",
+    "build": "npm install && npx tsc",
     "start": "npm run build && node dist/index.js",
     "dev": "npm run build && concurrently \"npx tsc -w\" \"nodemon --exec ts-node src/index.ts\"",
     "seed": "ts-node prisma/seed.ts"
@@ -22,10 +22,10 @@
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.4",
     "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "typescript": "^5.6.2",
     "@prisma/client": "^5.18.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
