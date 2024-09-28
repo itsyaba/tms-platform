@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "prisma generate && tsc",
+    "build": "npm install && prisma generate && tsc",
     "watch": "tsc -w",
     "start": "node dist/src/index.js",
     "dev": "nodemon dist/src/index.js",
